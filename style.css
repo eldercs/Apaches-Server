@@ -1,0 +1,80 @@
+h3{
+    font-size: 20px;
+    
+}
+.title-text {
+    color:green;
+    font-size:20px;
+}
+p{
+    font-size: 22px;
+    font-weight:600;
+    color:rgb(230, 230, 230);
+    text-shadow: 4px 3px 4px rgb(139, 84, 111);
+}
+span{
+    font-size: 26px;
+    font-weight:10px;
+ 
+}
+table{
+    background:rgb(106, 106, 170);
+    opacity: 0.8;
+}
+.table label {
+    color:rgb(236, 236, 236);
+    font-size:20px; 
+    font-family: Century Gothic;
+}
+.lul{
+background: url("/fon/parot.jpg") repeat ;
+background-size: 100%;
+/*background-size: 100%;*/
+}
+[type="radio"] {
+    border: 0; 
+    clip: rect(0 0 0 0); 
+    height: 1px; margin: -1px; 
+    overflow: hidden; 
+    padding: 0; 
+    position: absolute; 
+    width: 1px;
+  }
+  
+  /* One radio button per line */
+  label {
+    display: block;
+    cursor: pointer;
+    line-height: 2.5;
+    font-size: 1.5em;
+  }
+  
+  [type="radio"] + span {
+    display: block;
+  }
+  
+  /* the basic, unchecked style */
+  [type="radio"] + span:before {
+    content: '';
+    display: inline-block;
+    width: 0.5em;
+    height: 0.5em;
+    vertical-align: -0.25em; 
+    border-radius: 1em;
+    border: 0.125em solid #fff;
+    box-shadow: 0 0 0 0.15em #000;
+    margin-right: 10px;
+    transition: 0.5s ease all;
+    margin-bottom:5px;
+    
+  }
+  
+  /* the checked style using the :checked pseudo class */
+  [type="radio"]:checked + span:before {
+    background: rgb(245, 118, 0);
+    box-shadow: 0 0 0 0.25em #000;
+  }
+  
+  /* never forget focus styling */
+ 
+  
