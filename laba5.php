@@ -1,68 +1,52 @@
 <?php
+ini_set("display_errors", "1");
+  error_reporting(E_ALL); 
 
-// PNG изображение
-header('Content-type: image/png');
+  header('content-type: image/jpeg');
+  list($month, $day, $year) = explode('/', date('F/jS/Y'));
+  $weeks[0]="Воскресенье"; 
+$weeks[1]="Понедельник"; 
+$weeks[2]="Вторник"; 
+$weeks[3]="Среда"; 
+$weeks[4]="Четверг"; 
+$weeks[5]="Пятница"; 
+$weeks[6]="Суббота"; 
+$gisett=(int)date("w"); 
+  $image = imagecreatefrompng('fon/calendar.png');
+  $image_width = imagesx($image);
 
-// 404x404
-$im = imagecreatetruecolor(404, 404);
+  $white = imagecolorallocate($image, 255, 255, 255);
+  $black = imagecolorallocate($image, 0, 0, 0);
+  $font_path = dirname(__FILE__) . '/arial.ttf';
 
-// Определяем красный цвет
-$red = imagecolorallocate($im, 0xCC, 0x00, 0x00);
+  $pos_month = imagettfbbox(13, 0, $font_path, $month);
+  $pos_day = imagettfbbox(25, 0, $font_path, $day);
+  $pos_year = imagettfbbox(8, 0, $font_path, $year);
+  $pos_weeks = imagettfbbox(8, 0, $font_path, $weeks[$gisett]);
+  
+  imagettftext($image, 70, 0, 320, 295, $white, $font_path, $month);
+  
+  imagettftext($image, 140, 0, 280, 550, $black, $font_path, $day);
 
-// Определяем черный цвет
-$black = imagecolorallocate($im, 0, 0, 0);
+  imagettftext($image, 40, 0,370, 900, $black, $font_path, $year);
 
-// Определяем белый цвет
-$white = imagecolorallocate($im, 0xFF, 0xFF, 0xFF);
+  imagettftext($image, 60, 0,280, 700, $black, $font_path, $weeks[$gisett]);
 
-// Делаем фон белым (по-умолчанию черный)
-imagefill($im, 1, 1, $white);
+  imagejpeg($image, 'lol.png', 100);
 
-// Рисуем круг красного цвета
-imageellipse($im, 202, 202, 400, 400, $red);
+  imagedestroy($image);
 
-// Рисуем центр
-imageline($im, 202, 202, 202, 202, $black);
-
-// Рисуем линии от окружности
-//imageline($im, 343, 343, 323, 323, $black);
-//imageline($im, 61, 61, 81, 81, $black);
-
-// Рисуем линии от центра
-// толщина линии
-imagesetthickness($im, 3);
-imageline($im, 202, 202, 180, 40, $black);
-//imageline($im, 202, 320, 222, 300, $black);
-//imageline($im, 202, 320, 182, 300, $black);
-// толщина линии
-imagesetthickness($im, 5);
-imageline($im, 202, 202, 110, 205, $black);
-//imageline($im, 110, 205, 130, 225, $black);
-//imageline($im, 110, 205, 130, 185, $black);
-// толщина линии
-imagesetthickness($im, 2);
-imageline($im, 202, 202, 300, 140, $red);
-//imageline($im, 300, 140, 290, 160, $red);
-//imageline($im, 300, 140, 280, 140, $red);
-
-//// Рисуем цифры
-imageString($im, 5, 300, 40, "1", $black);
-imageString($im, 5, 360, 110, "2", $black);
-imageString($im, 5, 385, 200, "3", $black);
-imageString($im, 5, 360, 285, "4", $black);
-imageString($im, 5, 300, 352, "5", $black);
-imageString($im, 5, 200, 380, "6", $black);
-imageString($im, 5, 90, 345, "7", $black);
-imageString($im, 5, 35, 285, "8", $black);
-imageString($im, 5, 10, 200, "9", $black);
-imageString($im, 5, 30, 110, "10", $black);
-imageString($im, 5, 90, 40, "11", $black);
-imageString($im, 5, 190, 10, "12", $black);
-
-
-// Выводим изображение
-imagepng($im);
-
-// очищаем память после выполнения скрипта
-imagedestroy($im);
 ?>
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+</head>
+<body>
+    <style>
+body {
+  background-image: url('fon/lol.png');
+}
+</style>
+    </body>
+</html>
